@@ -1,3 +1,16 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  root 'tops#index'
+  resources :tops, only: [:index] do
+    collection do
+      get :company
+      get :biography
+      get :price
+    end
+  end
+
+  resources :contacts, only: [:new, :create] do
+    collection do
+      post 'confirm'
+    end
+  end
 end
